@@ -1,103 +1,150 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แบบสอบถามความพึงพอใจของเกษตรกร</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แบบสอบถามความพึงพอใจ</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>แบบสอบถามความพึงพอใจของเกษตรกรหลังการใช้โปรแกรมออนไลน์สำหรับประเมินความเสี่ยงด้านการยศาสตร์</h1>
-        <p>คำชี้แจง: ให้ทำเครื่องหมาย ✅ ลงในช่องที่ตรงกับความเป็นจริงของท่าน</p>
-        <p>ระดับที่ 5 หมายถึง ความพึงพอใจมากที่สุด<br>
-           ระดับที่ 4 หมายถึง ความพึงพอใจมาก<br>
-           ระดับที่ 3 หมายถึง ความพึงพอใจปานกลาง<br>
-           ระดับที่ 2 หมายถึง ความพึงพอใจน้อย<br>
-           ระดับที่ 1 หมายถึง ความพึงพอใจน้อยที่สุด</p>
-
-        <form id="surveyForm">
-            <div class="question">
-                <p>1. โปรแกรมใช้งานได้ง่าย ไม่ซับซ้อน</p>
-                <div class="options">
-                    <div class="option" data-value="5">5</div>
-                    <div class="option" data-value="4">4</div>
-                    <div class="option" data-value="3">3</div>
-                    <div class="option" data-value="2">2</div>
-                    <div class="option" data-value="1">1</div>
-                </div>
-            </div>
-
-            <div class="question">
-                <p>2. มีภาพหรือข้อมูลที่เข้าใจ</p>
-                <div class="options">
-                    <div class="option" data-value="5">5</div>
-                    <div class="option" data-value="4">4</div>
-                    <div class="option" data-value="3">3</div>
-                    <div class="option" data-value="2">2</div>
-                    <div class="option" data-value="1">1</div>
-                </div>
-            </div>
-
-            <div class="question">
-                <p>3. ความเหมาะสมของภาษา/ถ้อยคำ</p>
-                <div class="options">
-                    <div class="option" data-value="5">5</div>
-                    <div class="option" data-value="4">4</div>
-                    <div class="option" data-value="3">3</div>
-                    <div class="option" data-value="2">2</div>
-                    <div class="option" data-value="1">1</div>
-                </div>
-            </div>
-
-            <div class="question">
-                <p>4. ความรวดเร็วในการประมวลผล</p>
-                <div class="options">
-                    <div class="option" data-value="5">5</div>
-                    <div class="option" data-value="4">4</div>
-                    <div class="option" data-value="3">3</div>
-                    <div class="option" data-value="2">2</div>
-                    <div class="option" data-value="1">1</div>
-                </div>
-            </div>
-
-            <div class="question">
-                <p>5. ความสะดวกในการเข้าถึง (เช่น ใช้งานผ่านมือถือได้)</p>
-                <div class="options">
-                    <div class="option" data-value="5">5</div>
-                    <div class="option" data-value="4">4</div>
-                    <div class="option" data-value="3">3</div>
-                    <div class="option" data-value="2">2</div>
-                    <div class="option" data-value="1">1</div>
-                </div>
-            </div>
-
-            <div class="question">
-                <p>6. ความช่วยเหลือหรือคำแนะนำที่มีในระบบ</p>
-                <div class="options">
-                    <div class="option" data-value="5">5</div>
-                    <div class="option" data-value="4">4</div>
-                    <div class="option" data-value="3">3</div>
-                    <div class="option" data-value="2">2</div>
-                    <div class="option" data-value="1">1</div>
-                </div>
-            </div>
-
-            <div class="question">
-                <p>7. ภาพรวมของความพึงพอใจต่อโปรแกรม</p>
-                <div class="options">
-                    <div class="option" data-value="5">5</div>
-                    <div class="option" data-value="4">4</div>
-                    <div class="option" data-value="3">3</div>
-                    <div class="option" data-value="2">2</div>
-                    <div class="option" data-value="1">1</div>
-                </div>
-            </div>
-
-            <button type="submit" class="submit-btn">ส่ง</button>
-        </form>
+  <!-- หน้าแรก -->
+  <div id="page-intro" class="page">
+    <div class="intro-box">
+      <h2><u><b>คำชี้แจง</b></u></h2>
+      <p>ให้ทำเครื่องหมาย 💗 ลงในช่องที่ตรงกับความเป็นจริงของท่าน</p>
+      <p>ระดับที่ 5 หมายถึง ความพึงพอใจมากที่สุด<br>
+         ระดับที่ 4 หมายถึง ความพึงพอใจมาก<br>
+         ระดับที่ 3 หมายถึง ความพึงพอใจปานกลาง<br>
+         ระดับที่ 2 หมายถึง ความพึงพอใจน้อย<br>
+         ระดับที่ 1 หมายถึง ความพึงพอใจน้อยที่สุด</p>
+      <button class="start-btn" onclick="showPage('page-survey')">เริ่ม</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- หน้าสอบถาม -->
+  <div id="page-survey" class="page hidden">
+    <div class="survey-box">
+      <h1>แบบสอบถามความพึงพอใจ</h1>
+      <form id="surveyForm">
+        
+        <div class="question">
+          <p>1. โปรแกรมใช้งานได้ง่าย ไม่ซับซ้อน</p>
+          <div class="options-row">
+            <span class="scale-label">5</span>
+            <div class="options">
+              <div class="option" data-value="5"></div>
+              <div class="option" data-value="4"></div>
+              <div class="option" data-value="3"></div>
+              <div class="option" data-value="2"></div>
+              <div class="option" data-value="1"></div>
+            </div>
+            <span class="scale-label">1</span>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>2. มีภาพหรือข้อมูลที่เข้าใจ</p>
+          <div class="options-row">
+            <span class="scale-label">5</span>
+            <div class="options">
+              <div class="option" data-value="5"></div>
+              <div class="option" data-value="4"></div>
+              <div class="option" data-value="3"></div>
+              <div class="option" data-value="2"></div>
+              <div class="option" data-value="1"></div>
+            </div>
+            <span class="scale-label">1</span>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>3. ความเหมาะสมของภาษา/ถ้อยคำ</p>
+          <div class="options-row">
+            <span class="scale-label">5</span>
+            <div class="options">
+              <div class="option" data-value="5"></div>
+              <div class="option" data-value="4"></div>
+              <div class="option" data-value="3"></div>
+              <div class="option" data-value="2"></div>
+              <div class="option" data-value="1"></div>
+            </div>
+            <span class="scale-label">1</span>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>4. ความรวดเร็วในการประมวลผล</p>
+          <div class="options-row">
+            <span class="scale-label">5</span>
+            <div class="options">
+              <div class="option" data-value="5"></div>
+              <div class="option" data-value="4"></div>
+              <div class="option" data-value="3"></div>
+              <div class="option" data-value="2"></div>
+              <div class="option" data-value="1"></div>
+            </div>
+            <span class="scale-label">1</span>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>5. ความสะดวกในการเข้าถึง (เช่น ใช้งานผ่านมือถือได้)</p>
+          <div class="options-row">
+            <span class="scale-label">5</span>
+            <div class="options">
+              <div class="option" data-value="5"></div>
+              <div class="option" data-value="4"></div>
+              <div class="option" data-value="3"></div>
+              <div class="option" data-value="2"></div>
+              <div class="option" data-value="1"></div>
+            </div>
+            <span class="scale-label">1</span>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>6. ความช่วยเหลือหรือคำแนะนำที่มีในระบบ</p>
+          <div class="options-row">
+            <span class="scale-label">5</span>
+            <div class="options">
+              <div class="option" data-value="5"></div>
+              <div class="option" data-value="4"></div>
+              <div class="option" data-value="3"></div>
+              <div class="option" data-value="2"></div>
+              <div class="option" data-value="1"></div>
+            </div>
+            <span class="scale-label">1</span>
+          </div>
+        </div>
+
+        <div class="question">
+          <p>7. ภาพรวมของความพึงพอใจต่อโปรแกรม</p>
+          <div class="options-row">
+            <span class="scale-label">5</span>
+            <div class="options">
+              <div class="option" data-value="5"></div>
+              <div class="option" data-value="4"></div>
+              <div class="option" data-value="3"></div>
+              <div class="option" data-value="2"></div>
+              <div class="option" data-value="1"></div>
+            </div>
+            <span class="scale-label">1</span>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">ส่ง</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- หน้าสรุป -->
+  <div id="page-thankyou" class="page hidden">
+    <div class="thankyou-box">
+      <img src="11.jpg" alt="ขอบคุณ" class="thankyou-img">
+      <button class="back-btn" onclick="showPage('page-intro')">กลับไปหน้าหลัก</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
