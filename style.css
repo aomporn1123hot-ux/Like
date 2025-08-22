@@ -43,42 +43,43 @@ body, html {
   padding: 20px 40px;
   border-radius: 10px;
   max-width: 800px;
-  text-align: center;
+  width: 100%;
 }
 
 .question {
   margin-top: 20px;
+  text-align: left;   /* คำถามชิดซ้าย */
 }
 
 .question p {
-  font-weight: bold;        /* ทำตัวหนา */
-  font-size: 18px;          /* ขยายขึ้นเล็กน้อย */
+  font-weight: bold;
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
 .options-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-content: flex-start; /* เริ่มชิดซ้าย */
+  gap: 8px;
   margin-top: 5px;
 }
 
 .scale-label {
-  font-weight: normal;   /* ตัวบาง */
-  font-size: 14px;       /* เล็กลง */
-  margin: 0 10px;
+  font-weight: normal;
+  font-size: 14px;
+  margin: 0 5px;
 }
 
 .options {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .option {
-  width: 50px;
-  height: 50px;
-  border: 2px solid #90EE90; /* กรอบเขียวอ่อน */
+  width: 40px;   /* เล็กลงจาก 50px */
+  height: 40px;  /* เล็กลงจาก 50px */
+  border: 2px solid #90EE90;
   cursor: pointer;
   border-radius: 5px;
   transition: all 0.2s;
@@ -91,12 +92,12 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 35px;
+  font-size: 28px;
 }
 
 .option.selected::before {
   content: "💗";
-  font-size: 40px;
+  font-size: 32px;  /* ปรับขนาดหัวใจให้พอดีกับกรอบเล็ก */
   display: block;
   text-align: center;
 }
