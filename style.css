@@ -46,7 +46,15 @@ body, html {
   text-align: center;
 }
 
-.question { margin-top: 20px; }
+.question {
+  margin-top: 20px;
+}
+
+.question p {
+  font-weight: bold;        /* ทำตัวหนา */
+  font-size: 18px;          /* ขยายขึ้นเล็กน้อย */
+  margin-bottom: 8px;
+}
 
 .options-row {
   display: flex;
@@ -57,7 +65,8 @@ body, html {
 }
 
 .scale-label {
-  font-weight: bold;
+  font-weight: normal;   /* ตัวบาง */
+  font-size: 14px;       /* เล็กลง */
   margin: 0 10px;
 }
 
