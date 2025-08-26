@@ -10,7 +10,7 @@ body, html {
   height: 100vh;
   width: 100%;
   background: url('10.jpg') no-repeat center center fixed;
-  background-size: cover;
+  background-size: cover;   /* พื้นหลังเต็มจอ */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,7 +48,8 @@ body, html {
 
 .question {
   margin-top: 20px;
-  text-align: left;   /* คำถามชิดซ้าย */
+  text-align: left;
+  margin-left: 10px;   /* ✅ ขยับโจทย์ชิดซ้ายขึ้น */
 }
 
 .question p {
@@ -60,9 +61,10 @@ body, html {
 .options-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* เริ่มชิดซ้าย */
-  gap: 8px;
+  justify-content: flex-start;
+  gap: 6px;
   margin-top: 5px;
+  margin-left: 20px;   /* ✅ ขยับตัวเลือกให้ชิดซ้ายตามโจทย์ */
 }
 
 .scale-label {
@@ -73,12 +75,12 @@ body, html {
 
 .options {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .option {
-  width: 40px;   /* เล็กลงจาก 50px */
-  height: 40px;  /* เล็กลงจาก 50px */
+  width: 32px;   /* ✅ เล็กลงจาก 40px */
+  height: 32px;  /* ✅ เล็กลงจาก 40px */
   border: 2px solid #90EE90;
   cursor: pointer;
   border-radius: 5px;
@@ -92,12 +94,11 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 28px;
 }
 
 .option.selected::before {
   content: "💗";
-  font-size: 32px;  /* ปรับขนาดหัวใจให้พอดีกับกรอบเล็ก */
+  font-size: 24px;  /* ✅ ปรับหัวใจให้พอดีกับกล่องเล็ก */
   display: block;
   text-align: center;
 }
