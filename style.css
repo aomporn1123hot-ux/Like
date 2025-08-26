@@ -1,30 +1,57 @@
-/* ให้ page พื้นหลังเต็มจอ */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
+}
+
+/* แต่ละหน้า */
 .page {
   display: none;
-  min-height: 100vh;     /* แทน height:100vh ป้องกันถูกบีบ */
+  min-height: 100vh;   /* ให้ยืดเต็มจอเสมอ */
   width: 100%;
   background: url('10.jpg') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* ชิดบนแทนกลาง */
-  padding: 40px 0;        /* กันไม่ให้ติดขอบ */
+  align-items: center; /* คงให้อยู่กลางจอ */
 }
 
-/* กล่องคำถาม */
+.hidden { display: none; }
+
+.intro-box {
+  max-width: 700px;
+  color: #000;
+  background: rgba(255,255,255,0.7);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.start-btn, .submit-btn, .back-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
 .survey-box {
   background: rgba(255,255,255,0.85);
   padding: 30px 40px;
   border-radius: 10px;
   max-width: 800px;
-  width: 95%;          /* ให้ยืดเต็มได้เกือบจอ */
+  width: 95%;
+  box-sizing: border-box;
 }
 
-/* ขยับคำถามชิดซ้ายกว่าเดิม */
 .question {
   margin-top: 20px;
   text-align: left;
-  padding-left: 10px;   /* ขยับเข้าซ้าย */
+  padding-left: 5px;   /* ขยับคำถามเข้าซ้ายขึ้น */
 }
 
 .question p {
@@ -33,20 +60,30 @@
   margin-bottom: 8px;
 }
 
-/* แถวของตัวเลือก */
 .options-row {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 6px;          /* ช่องว่างน้อยลง */
+  gap: 6px;
   margin-top: 5px;
-  padding-left: 20px; /* ให้ชิดกับคำถามมากขึ้น */
+  padding-left: 15px;  /* ชิดซ้ายกว่าเดิม */
 }
 
-/* กล่องตัวเลือกให้เล็กลง */
+.scale-label {
+  font-weight: normal;
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+.options {
+  display: flex;
+  gap: 6px;
+}
+
+/* ทำช่องคำตอบเล็กลง */
 .option {
-  width: 30px;     /* เล็กลง */
-  height: 30px;    /* เล็กลง */
+  width: 30px;
+  height: 30px;
   border: 2px solid #90EE90;
   cursor: pointer;
   border-radius: 5px;
@@ -56,7 +93,18 @@
 
 .option.selected::before {
   content: "💗";
-  font-size: 22px;  /* ลดขนาดหัวใจตามกรอบ */
+  font-size: 22px;  /* ขนาดหัวใจเล็กลงตามช่อง */
   display: block;
   text-align: center;
+}
+
+.thankyou-box {
+  text-align: center;
+}
+
+.thankyou-img {
+  max-width: 90%;
+  max-height: 80vh;
+  display: block;
+  margin: 0 auto;
 }
