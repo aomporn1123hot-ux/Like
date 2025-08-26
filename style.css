@@ -25,7 +25,7 @@ body, html {
   padding: 15px;
   border-radius: 10px;
   text-align: left;
-  font-size: 16px;   /* ✅ ลดขนาดตัวหนังสือ */
+  font-size: 14px;   /* ✅ หัวข้อเล็กลง */
 }
 
 .survey-box {
@@ -34,7 +34,7 @@ body, html {
   border-radius: 10px;
   max-width: 800px;
   width: 100%;
-  font-size: 16px;   /* ✅ ลดขนาดตัวหนังสือ */
+  font-size: 15px;   /* ✅ เล็กลง */
 }
 
 .question {
@@ -45,50 +45,54 @@ body, html {
 
 .question p {
   font-weight: bold;
-  font-size: 16px;  /* ✅ ตัวหนังสือเล็กลง */
+  font-size: 15px;  /* ✅ เล็กลง */
   margin-bottom: 6px;
 }
 
+/* ✅ ปรับช่องตอบเป็นวงกลมเรียง 5 ช่องตรงกลาง */
 .options-row {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  margin-top: 5px;
-  margin-left: 0;   /* ✅ ชิดซ้ายสุด */
-}
-
-.scale-label {
-  font-size: 13px;  /* ✅ ตัวเล็กลงอีก */
-}
-.options {
-  display: flex;
-  gap: 6px;
+  justify-content: center;   /* ✅ จัดกลาง */
+  gap: 10px;   /* ✅ เว้นระยะห่างเล็กน้อย */
+  margin-top: 10px;
 }
 
 .option {
-  width: 32px;   /* ✅ เล็กลงจาก 40px */
-  height: 32px;  /* ✅ เล็กลงจาก 40px */
+  width: 26px;   /* ✅ เล็กลง */
+  height: 26px;
   border: 2px solid #90EE90;
+  border-radius: 50%;   /* ✅ วงกลม */
   cursor: pointer;
-  border-radius: 5px;
   transition: all 0.2s;
-  background-size: cover;
+  background-color: white;
 }
 
 .option.selected {
-  background-color: transparent;
-  background-image: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #ffb6c1;   /* ✅ เมื่อเลือก */
+  border-color: #ff1493;
 }
 
 .option.selected::before {
   content: "💗";
-  font-size: 24px;  /* ✅ ปรับหัวใจให้พอดีกับกล่องเล็ก */
+  font-size: 18px;  /* ✅ หัวใจพอดีกับวงกลมเล็ก */
   display: block;
   text-align: center;
+  line-height: 22px;
+}
+
+/* ✅ ปุ่มกด */
+.start-btn, .submit-btn, .back-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #006400;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;  /* ✅ จัดกลาง */
 }
 
 .thankyou-box {
