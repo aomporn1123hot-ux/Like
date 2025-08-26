@@ -10,7 +10,7 @@ body, html {
   height: 100vh;
   width: 100%;
   background: url('10.jpg') no-repeat center center fixed;
-  background-size: cover;   /* พื้นหลังเต็มจอ */
+  background-size: cover;   /* ✅ พื้นหลังเต็มจอ */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,17 +39,20 @@ body, html {
 }
 
 .survey-box {
-  background: rgba(255,255,255,0.8);
-  padding: 20px 40px;
+  /* ❌ ลบพื้นหลังสีขาวออก */
+  background: none;
+  padding: 20px 30px;
   border-radius: 10px;
   max-width: 800px;
   width: 100%;
+  color: #fff;   /* ✅ ใช้ตัวอักษรขาวให้อ่านง่ายบนพื้นหลัง */
+  text-shadow: 1px 1px 2px #000; /* เพิ่มเงาให้อ่านชัด */
 }
 
 .question {
   margin-top: 20px;
   text-align: left;
-  margin-left: 10px;   /* ✅ ขยับโจทย์ชิดซ้ายขึ้น */
+  margin-left: 0;   /* ✅ ให้ชิดซ้ายจริงๆ */
 }
 
 .question p {
@@ -61,10 +64,9 @@ body, html {
 .options-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
+  justify-content: center; /* ✅ จัดกลางแนวนอน */
+  gap: 5px;
   margin-top: 5px;
-  margin-left: 20px;   /* ✅ ขยับตัวเลือกให้ชิดซ้ายตามโจทย์ */
 }
 
 .scale-label {
@@ -75,22 +77,20 @@ body, html {
 
 .options {
   display: flex;
-  gap: 6px;
+  gap: 5px;
 }
 
 .option {
-  width: 32px;   /* ✅ เล็กลงจาก 40px */
-  height: 32px;  /* ✅ เล็กลงจาก 40px */
+  width: 28px;   /* ✅ เล็กลง */
+  height: 28px;
   border: 2px solid #90EE90;
   cursor: pointer;
   border-radius: 5px;
   transition: all 0.2s;
-  background-size: cover;
 }
 
 .option.selected {
   background-color: transparent;
-  background-image: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,7 +98,7 @@ body, html {
 
 .option.selected::before {
   content: "💗";
-  font-size: 24px;  /* ✅ ปรับหัวใจให้พอดีกับกล่องเล็ก */
+  font-size: 20px;  /* ✅ ปรับขนาดหัวใจให้พอดีกล่อง */
   display: block;
   text-align: center;
 }
