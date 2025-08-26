@@ -5,16 +5,15 @@ body, html {
   height: 100%;
 }
 
-/* แต่ละหน้า */
 .page {
   display: none;
-  min-height: 100vh;   /* ให้ยืดเต็มจอเสมอ */
+  height: 100vh;
   width: 100%;
   background: url('10.jpg') no-repeat center center fixed;
   background-size: cover;
   display: flex;
   justify-content: center;
-  align-items: center; /* คงให้อยู่กลางจอ */
+  align-items: center;
 }
 
 .hidden { display: none; }
@@ -40,18 +39,16 @@ body, html {
 }
 
 .survey-box {
-  background: rgba(255,255,255,0.85);
-  padding: 30px 40px;
+  background: rgba(255,255,255,0.8);
+  padding: 20px 40px;
   border-radius: 10px;
   max-width: 800px;
-  width: 95%;
-  box-sizing: border-box;
+  width: 100%;
 }
 
 .question {
   margin-top: 20px;
-  text-align: left;
-  padding-left: 5px;   /* ขยับคำถามเข้าซ้ายขึ้น */
+  text-align: left;   /* คำถามชิดซ้าย */
 }
 
 .question p {
@@ -63,10 +60,9 @@ body, html {
 .options-row {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
+  justify-content: flex-start; /* เริ่มชิดซ้าย */
+  gap: 8px;
   margin-top: 5px;
-  padding-left: 15px;  /* ชิดซ้ายกว่าเดิม */
 }
 
 .scale-label {
@@ -77,13 +73,12 @@ body, html {
 
 .options {
   display: flex;
-  gap: 6px;
+  gap: 8px;
 }
 
-/* ทำช่องคำตอบเล็กลง */
 .option {
-  width: 30px;
-  height: 30px;
+  width: 40px;   /* เล็กลงจาก 50px */
+  height: 40px;  /* เล็กลงจาก 50px */
   border: 2px solid #90EE90;
   cursor: pointer;
   border-radius: 5px;
@@ -91,9 +86,18 @@ body, html {
   background-size: cover;
 }
 
+.option.selected {
+  background-color: transparent;
+  background-image: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+}
+
 .option.selected::before {
   content: "💗";
-  font-size: 22px;  /* ขนาดหัวใจเล็กลงตามช่อง */
+  font-size: 32px;  /* ปรับขนาดหัวใจให้พอดีกับกรอบเล็ก */
   display: block;
   text-align: center;
 }
