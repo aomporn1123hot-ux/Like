@@ -3,6 +3,7 @@ body, html {
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100%;
+  background-color: #f5f5f5;
 }
 
 .page {
@@ -10,7 +11,7 @@ body, html {
   height: 100vh;
   width: 100%;
   background: url('10.jpg') no-repeat center center fixed;
-  background-size: cover;   /* พื้นหลังเต็มจอ */
+  background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,66 +22,78 @@ body, html {
 .intro-box {
   max-width: 700px;
   color: #000;
-  background: rgba(255,255,255,0.7);
-  padding: 15px;
+  background: rgba(255,255,255,0.85);
+  padding: 18px;
   border-radius: 10px;
   text-align: left;
-  font-size: 14px;   /* ✅ หัวข้อเล็กลง */
+  font-size: 14px;
 }
 
 .survey-box {
-  background: rgba(255,255,255,0.8);
-  padding: 20px 30px;
+  background: rgba(255,255,255,0.9);
+  padding: 18px 24px;
   border-radius: 10px;
-  max-width: 800px;
-  width: 100%;
-  font-size: 15px;   /* ✅ เล็กลง */
+  max-width: 880px;
+  width: 96%;
+  font-size: 15px;
 }
 
 .question {
-  margin-top: 15px;
+  margin-top: 14px;
   text-align: left;
-  margin-left: 0;   /* ✅ ชิดซ้ายสุด */
+  margin-left: 0;
 }
 
 .question p {
   font-weight: bold;
-  font-size: 15px;  /* ✅ เล็กลง */
-  margin-bottom: 6px;
+  font-size: 15px;
+  margin-bottom: 8px;
 }
 
-/* ✅ ปรับช่องตอบเป็นวงกลมเรียงแนวนอน 5 ช่องตรงกลาง */
+/* ตัวเลือกภาพวงกลมเรียงแนวนอน */
 .options-row {
   display: flex;
-  flex-direction: row;   /* ✅ บังคับให้เรียงแนวนอน */
-  justify-content: center;   /* ✅ จัดกลาง */
-  gap: 12px;   /* ✅ เว้นระยะห่างเล็กน้อย */
-  margin-top: 10px;
+  flex-direction: row;
+  justify-content: flex-start; /* ให้เริ่มจากซ้าย แต่ภาพจะมี gap */
+  gap: 14px;
+  margin-top: 8px;
+  align-items: center;
 }
 
+/* กล่องรอบรูป */
 .option {
-  width: 26px;   
-  height: 26px;
-  border: 2px solid #90EE90;
-  border-radius: 50%;   /* ✅ วงกลม */
+  width: 64px;    /* ขนาดกล่อง */
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
   cursor: pointer;
-  transition: all 0.2s;
-  background-color: white;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: none;
+  border: 2px solid transparent;
+  background: transparent;
 }
 
-.option.selected {
-  background-color: #ffb6c1;   
-  border-color: #ff1493;
-}
-
-.option.selected::before {
-  content: "💗";
-  font-size: 18px;
+/* รูปในกล่อง (ควรเป็น PNG ใสพื้นหลัง) */
+.option img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   display: block;
-  text-align: center;
-  line-height: 22px;
+  object-fit: contain;
+  pointer-events: none; /* ให้คลิกผ่านไปที่ .option */
+  transition: transform 0.12s ease;
 }
-/* ✅ ปุ่มกด */
+
+/* เมื่อเลือก ให้ขยายเล็กน้อยและเรืองแสง (ใช้ตัวแปร --glow-color ที่กำหนดจาก JS) */
+.option.selected {
+  transform: translateY(-3px);
+  box-shadow: 0 0 6px 3px var(--glow-color, rgba(0,200,0,0.7));
+  border-color: rgba(255,255,255,0.4);
+}
+
+/* ปุ่ม */
 .start-btn, .submit-btn, .back-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -92,9 +105,10 @@ body, html {
   border-radius: 5px;
   display: block;
   margin-left: auto;
-  margin-right: auto;  /* ✅ จัดกลาง */
+  margin-right: auto;
 }
 
+/* หน้าขอบคุณ */
 .thankyou-box {
   text-align: center;
 }
@@ -104,4 +118,12 @@ body, html {
   max-height: 80vh;
   display: block;
   margin: 0 auto;
+}
+
+/* ปรับให้ responsive เล็กน้อย */
+@media (max-width: 600px) {
+  .option { width: 52px; height: 52px; }
+  .option img { width: 46px; height: 46px; }
+  .options-row { gap: 10px; }
+  .survey-box { padding: 14px; }
 }
