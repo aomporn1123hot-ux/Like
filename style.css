@@ -4,7 +4,7 @@ body, html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 100%;
   background-color: #f5f5f5;
-  font-size: 18px; /* เพิ่มขนาดตัวอักษรหลัก */
+  font-size: 18px; /* ✅ เพิ่มขนาดตัวหนังสือพื้นฐาน */
 }
 
 .page {
@@ -24,54 +24,89 @@ body, html {
   max-width: 700px;
   color: #000;
   background: rgba(255,255,255,0.85);
-  padding: 20px;
+  padding: 18px;
   border-radius: 10px;
   text-align: left;
-  font-size: 18px; /* ใหญ่ขึ้น */
-  line-height: 1.6;
+  font-size: 17px; /* ✅ เพิ่มขึ้นจาก 14px */
 }
 
 .survey-box {
   background: rgba(255,255,255,0.9);
-  padding: 22px 28px;
+  padding: 18px 24px;
   border-radius: 10px;
   max-width: 880px;
   width: 96%;
-  font-size: 18px; /* ใหญ่ขึ้น */
-  line-height: 1.6;
+  font-size: 17px; /* ✅ เพิ่มขึ้นจาก 15px */
 }
 
 .question {
-  margin-top: 16px;
+  margin-top: 14px;
   text-align: left;
   margin-left: 0;
 }
 
 .question p {
   font-weight: bold;
-  font-size: 20px; /* คำถามชัดเจนขึ้น */
-  margin-bottom: 10px;
+  font-size: 18px; /* ✅ เพิ่มขึ้นจาก 15px */
+  margin-bottom: 8px;
 }
 
-/* ปุ่ม */
+/* ตัวเลือกภาพวงกลมเรียงแนวนอน */
+.options-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-top: 8px;
+  align-items: center;
+}
+
+.option {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  box-shadow: none;
+  border: 2px solid transparent;
+  background: transparent;
+}
+
+.option img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  object-fit: contain;
+  pointer-events: none;
+  transition: transform 0.12s ease;
+}
+
+.option.selected {
+  transform: translateY(-3px);
+  box-shadow: 0 0 6px 3px var(--glow-color, rgba(0,200,0,0.7));
+  border-color: rgba(255,255,255,0.4);
+}
+
 .start-btn, .submit-btn, .back-btn {
-  margin-top: 22px;
-  padding: 12px 24px;
-  font-size: 20px; /* ปุ่มใหญ่ขึ้น */
+  margin-top: 20px;
+  padding: 12px 24px; /* ✅ ขยายเล็กน้อย */
+  font-size: 20px; /* ✅ เพิ่มขึ้นจาก 18px */
   cursor: pointer;
   background-color: #006400;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* หน้าขอบคุณ */
 .thankyou-box {
   text-align: center;
-  font-size: 20px; /* เพิ่มให้ข้อความขอบคุณใหญ่ขึ้น */
 }
 
 .thankyou-img {
@@ -81,13 +116,10 @@ body, html {
   margin: 0 auto;
 }
 
-/* ปรับให้ responsive เล็กน้อย */
 @media (max-width: 600px) {
-  body, html { font-size: 16px; } /* บนมือถือให้เล็กลงเล็กน้อยเพื่อไม่ล้น */
   .option { width: 52px; height: 52px; }
   .option img { width: 46px; height: 46px; }
   .options-row { gap: 10px; }
-  .survey-box { padding: 16px; font-size: 16px; }
-  .question p { font-size: 18px; }
+  .survey-box { padding: 14px; font-size: 16px; } /* ✅ อ่านง่ายบนมือถือ */
   .start-btn, .submit-btn, .back-btn { font-size: 18px; }
 }
