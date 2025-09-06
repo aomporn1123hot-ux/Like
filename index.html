@@ -12,7 +12,7 @@
     <div class="intro-box">
       <h2><u><b>คำชี้แจง</b></u></h2>
       <p>เลือกช่องที่ตรงกับความเป็นจริงพึงพอใจของท่าน</p>
-      <p><img src="ระดับความพึงพอใจ.png" alt="ระดับความพึงพอใจ" style="max-width:100%; height:auto;"></p>
+      <p><img src="ความพึงพอใจ.png" alt="ความพึงพอใจ" style="max-width:100%; height:auto;"></p>
       <button class="start-btn" onclick="showPage('page-survey')">เริ่ม</button>
     </div>
   </div>
@@ -23,25 +23,15 @@
       <h1>แบบสอบถามความพึงพอใจ</h1>
       <form id="surveyForm">
 
-        <!-- ตัวอย่างคำถามซ้ำได้ตามเดิม (7 ข้อ) -->
+        <!-- ข้อ 1 -->
         <div class="question" data-q="1">
           <p>1. โปรแกรมใช้งานได้ง่าย ไม่ซับซ้อน</p>
           <div class="options-row">
-            <div class="option" data-value="5" title="มากที่สุด">
-              <img src="มากที่สุด.png" alt="มากที่สุด">
-            </div>
-            <div class="option" data-value="4" title="มาก">
-              <img src="มาก.png" alt="มาก">
-            </div>
-            <div class="option" data-value="3" title="ปานกลาง">
-              <img src="ปานกลาง.png" alt="ปานกลาง">
-            </div>
-            <div class="option" data-value="2" title="น้อย">
-              <img src="น้อย.png" alt="น้อย">
-            </div>
-            <div class="option" data-value="1" title="น้อยที่สุด">
-              <img src="น้อยที่สุด.png" alt="น้อยที่สุด">
-            </div>
+            <div class="option" data-value="1" title="น้อยที่สุด"><img src="น้อยที่สุด.png" alt="น้อยที่สุด"></div>
+            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
+            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
+            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
+            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
           </div>
           <input type="hidden" name="q1" class="answer-input">
         </div>
@@ -50,11 +40,11 @@
         <div class="question" data-q="2">
           <p>2. มีภาพหรือข้อมูลที่เข้าใจ</p>
           <div class="options-row">
-            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
-            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
-            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
-            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
             <div class="option" data-value="1" title="น้อยที่สุด"><img src="น้อยที่สุด.png" alt="น้อยที่สุด"></div>
+            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
+            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
+            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
+            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
           </div>
           <input type="hidden" name="q2" class="answer-input">
         </div>
@@ -63,11 +53,11 @@
         <div class="question" data-q="3">
           <p>3. ความเหมาะสมของภาษา/ถ้อยคำ</p>
           <div class="options-row">
-            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
-            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
-            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
-            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
             <div class="option" data-value="1" title="น้อยที่สุด"><img src="น้อยที่สุด.png" alt="น้อยที่สุด"></div>
+            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
+            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
+            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
+            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
           </div>
           <input type="hidden" name="q3" class="answer-input">
         </div>
@@ -76,11 +66,11 @@
         <div class="question" data-q="4">
           <p>4. ความรวดเร็วในการประมวลผล</p>
           <div class="options-row">
-            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
-            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
-            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
-            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
             <div class="option" data-value="1" title="น้อยที่สุด"><img src="น้อยที่สุด.png" alt="น้อยที่สุด"></div>
+            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
+            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
+            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
+            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
           </div>
           <input type="hidden" name="q4" class="answer-input">
         </div>
@@ -89,11 +79,11 @@
         <div class="question" data-q="5">
           <p>5. ความสะดวกในการเข้าถึง (เช่น ใช้งานผ่านมือถือได้)</p>
           <div class="options-row">
-            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
-            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
-            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
-            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
             <div class="option" data-value="1" title="น้อยที่สุด"><img src="น้อยที่สุด.png" alt="น้อยที่สุด"></div>
+            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
+            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
+            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
+            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
           </div>
           <input type="hidden" name="q5" class="answer-input">
         </div>
@@ -102,11 +92,11 @@
         <div class="question" data-q="6">
           <p>6. ความช่วยเหลือหรือคำแนะนำที่มีในระบบ</p>
           <div class="options-row">
-            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
-            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
-            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
-            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
             <div class="option" data-value="1" title="น้อยที่สุด"><img src="น้อยที่สุด.png" alt="น้อยที่สุด"></div>
+            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
+            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
+            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
+            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
           </div>
           <input type="hidden" name="q6" class="answer-input">
         </div>
@@ -115,11 +105,11 @@
         <div class="question" data-q="7">
           <p>7. ภาพรวมของความพึงพอใจต่อโปรแกรม</p>
           <div class="options-row">
-            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
-            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
-            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
-            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
             <div class="option" data-value="1" title="น้อยที่สุด"><img src="น้อยที่สุด.png" alt="น้อยที่สุด"></div>
+            <div class="option" data-value="2" title="น้อย"><img src="น้อย.png" alt="น้อย"></div>
+            <div class="option" data-value="3" title="ปานกลาง"><img src="ปานกลาง.png" alt="ปานกลาง"></div>
+            <div class="option" data-value="4" title="มาก"><img src="มาก.png" alt="มาก"></div>
+            <div class="option" data-value="5" title="มากที่สุด"><img src="มากที่สุด.png" alt="มากที่สุด"></div>
           </div>
           <input type="hidden" name="q7" class="answer-input">
         </div>
