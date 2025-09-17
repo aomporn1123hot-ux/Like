@@ -41,7 +41,6 @@ body, html {
 .question {
   margin-top: 14px;
   text-align: left;
-  margin-left: 0;
 }
 
 .question p {
@@ -50,19 +49,16 @@ body, html {
   margin-bottom: 8px;
 }
 
-/* ตัวเลือกภาพวงกลมเรียงแนวนอน */
 .options-row {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start; /* ให้เริ่มจากซ้าย แต่ภาพจะมี gap */
   gap: 14px;
   margin-top: 8px;
   align-items: center;
 }
 
-/* กล่องรอบรูป */
 .option {
-  width: 64px;    /* ขนาดกล่อง */
+  width: 64px;
   height: 64px;
   display: flex;
   justify-content: center;
@@ -75,25 +71,22 @@ body, html {
   background: transparent;
 }
 
-/* รูปในกล่อง (ควรเป็น PNG ใสพื้นหลัง) */
 .option img {
   width: 56px;
   height: 56px;
   border-radius: 50%;
   display: block;
   object-fit: contain;
-  pointer-events: none; /* ให้คลิกผ่านไปที่ .option */
+  pointer-events: none;
   transition: transform 0.12s ease;
 }
 
-/* เมื่อเลือก ให้ขยายเล็กน้อยและเรืองแสง (ใช้ตัวแปร --glow-color ที่กำหนดจาก JS) */
 .option.selected {
   transform: translateY(-3px);
   box-shadow: 0 0 6px 3px var(--glow-color, rgba(0,200,0,0.7));
   border-color: rgba(255,255,255,0.4);
 }
 
-/* ปุ่ม */
 .start-btn, .submit-btn, .back-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -108,7 +101,6 @@ body, html {
   margin-right: auto;
 }
 
-/* หน้าขอบคุณ */
 .thankyou-box {
   text-align: center;
 }
@@ -120,7 +112,6 @@ body, html {
   margin: 0 auto;
 }
 
-/* ปรับให้ responsive เล็กน้อย */
 @media (max-width: 600px) {
   .option { width: 52px; height: 52px; }
   .option img { width: 46px; height: 46px; }
