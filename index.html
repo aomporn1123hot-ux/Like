@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>แบบสอบถามความพึงพอใจ</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
 </head>
 <body>
   <!-- หน้าแรก -->
@@ -23,7 +26,7 @@
       <h1>แบบสอบถามความพึงพอใจ</h1>
       <form id="surveyForm">
 
-        <!-- ข้อ 1 -->
+        <!-- สร้างคำถาม 1-7 -->
         <div class="question" data-q="1">
           <p>1. โปรแกรมใช้งานได้ง่าย ไม่ซับซ้อน</p>
           <div class="options-row">
@@ -36,7 +39,6 @@
           <input type="hidden" name="q1" class="answer-input">
         </div>
 
-        <!-- ข้อ 2 -->
         <div class="question" data-q="2">
           <p>2. มีภาพหรือข้อมูลที่เข้าใจ</p>
           <div class="options-row">
@@ -49,7 +51,6 @@
           <input type="hidden" name="q2" class="answer-input">
         </div>
 
-        <!-- ข้อ 3 -->
         <div class="question" data-q="3">
           <p>3. ความเหมาะสมของภาษา/ถ้อยคำ</p>
           <div class="options-row">
@@ -62,7 +63,6 @@
           <input type="hidden" name="q3" class="answer-input">
         </div>
 
-        <!-- ข้อ 4 -->
         <div class="question" data-q="4">
           <p>4. ความรวดเร็วในการประมวลผล</p>
           <div class="options-row">
@@ -75,7 +75,6 @@
           <input type="hidden" name="q4" class="answer-input">
         </div>
 
-        <!-- ข้อ 5 -->
         <div class="question" data-q="5">
           <p>5. ความสะดวกในการเข้าถึง (เช่น ใช้งานผ่านมือถือได้)</p>
           <div class="options-row">
@@ -88,7 +87,6 @@
           <input type="hidden" name="q5" class="answer-input">
         </div>
 
-        <!-- ข้อ 6 -->
         <div class="question" data-q="6">
           <p>6. ความช่วยเหลือหรือคำแนะนำที่มีในระบบ</p>
           <div class="options-row">
@@ -101,7 +99,6 @@
           <input type="hidden" name="q6" class="answer-input">
         </div>
 
-        <!-- ข้อ 7 -->
         <div class="question" data-q="7">
           <p>7. ภาพรวมของความพึงพอใจต่อโปรแกรม</p>
           <div class="options-row">
@@ -119,7 +116,7 @@
     </div>
   </div>
 
-  <!-- หน้าสรุป -->
+  <!-- หน้าขอบคุณ -->
   <div id="page-thankyou" class="page hidden">
     <div class="thankyou-box">
       <img src="11.jpg" alt="ขอบคุณ" class="thankyou-img">
