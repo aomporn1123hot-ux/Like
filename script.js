@@ -4,17 +4,30 @@ function showPage(pageId) {
   if (el) el.classList.remove('hidden');
 }
 
-// จัดการตัวเลือกและการบันทึกค่าใน input ที่ซ่อนอยู่
+// Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyDf0D2GLLDHoAVX4zq-tLuVocSmsrFhs38",
+  authDomain: "fera-2215e.firebaseapp.com",
+  databaseURL: "https://fera-2215e-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "fera-2215e",
+  storageBucket: "fera-2215e.appspot.com",
+  messagingSenderId: "810225127285",
+  appId: "1:810225127285:web:fa87166d4e3e4770670d3c"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const auth = firebase.auth();
+auth.signInAnonymously().catch(console.error);
+
 document.addEventListener('DOMContentLoaded', () => {
   const optionElements = document.querySelectorAll('.option');
-
-  // สี glow ตามค่า (value => color)
   const glowMap = {
-    "5": "rgba(0,200,83,0.85)",   // มากที่สุด => เขียว
-    "4": "rgba(102,187,106,0.9)", // มาก => เขียวอ่อน
-    "3": "rgba(255,167,38,0.95)", // ปานกลาง => ส้ม
-    "2": "rgba(255,235,59,0.95)", // น้อย => เหลือง
-    "1": "rgba(239,83,80,0.95)"   // น้อยที่สุด => แดง
+    "5": "rgba(0,200,83,0.85)",
+    "4": "rgba(102,187,106,0.9)",
+    "3": "rgba(255,167,38,0.95)",
+    "2": "rgba(255,235,59,0.95)",
+    "1": "rgba(239,83,80,0.95)"
   };
 
   optionElements.forEach(option => {
@@ -23,21 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const row = option.closest('.options-row');
       if (!row) return;
 
-      // เอา selected ออกจาก siblings
-      const siblings = row.querySelectorAll('.option');
-      siblings.forEach(sib => {
+      row.querySelectorAll('.option').forEach(sib => {
         sib.classList.remove('selected');
         sib.style.removeProperty('--glow-color');
       });
 
-      // mark selected
       option.classList.add('selected');
+      option.style.setProperty('--glow-color', glowMap[value] || 'rgba(0,200,83,0.8)');
 
-      // กำหนดสี glow ตามค่า
-      const color = glowMap[value] || 'rgba(0,200,83,0.8)';
-      option.style.setProperty('--glow-color', color);
-
-      // บันทึกค่าไปที่ input ซ่อนของคำถามนั้น
       const questionDiv = option.closest('.question');
       if (questionDiv) {
         const hidden = questionDiv.querySelector('.answer-input');
@@ -46,12 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // เมื่อกดส่ง
   document.getElementById('surveyForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // (เลือกไม่บังคับ) ตรวจสอบว่ามีคำตอบหรือยัง — หากต้องการให้บังคับ ให้ uncomment ข้อความด้านล่าง
-    /*
+    // ตรวจสอบว่าตอบครบทุกข้อ
     const inputs = document.querySelectorAll('.answer-input');
     for (const inp of inputs) {
       if (!inp.value) {
@@ -59,12 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
     }
-    */
 
-    // ตอนนี้แค่ไปหน้าขอบคุณ
-    showPage('page-thankyou');
+    const answers = {};
+    inputs.forEach(inp => answers[inp.name] = inp.value);
+    answers.timestamp = Date.now();
+
+    const refAnswers = db.ref("surveyResponses");
+    refAnswers.push(answers, error => {
+      if (error) {
+        alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+        console.error(error);
+      } else {
+        showPage('page-thankyou');
+      }
+    });
   });
 });
 
-// เปิดหน้าแรกตอนโหลด
+// เปิดหน้าแรก
 showPage('page-intro');
