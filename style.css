@@ -1,3 +1,4 @@
+/* ---------------------- Reset & Base ---------------------- */
 body, html {
   margin: 0;
   padding: 0;
@@ -6,6 +7,7 @@ body, html {
   background-color: #f5f5f5;
 }
 
+/* ---------------------- Page Layout ---------------------- */
 .page {
   display: none;
   height: 100vh;
@@ -19,6 +21,7 @@ body, html {
 
 .hidden { display: none; }
 
+/* ---------------------- Intro Box ---------------------- */
 .intro-box {
   max-width: 700px;
   color: #000;
@@ -29,6 +32,11 @@ body, html {
   font-size: 14px;
 }
 
+.intro-box h2 {
+  margin-top: 0;
+}
+
+/* ---------------------- Survey Box ---------------------- */
 .survey-box {
   background: rgba(255,255,255,0.9);
   padding: 18px 24px;
@@ -49,6 +57,7 @@ body, html {
   margin-bottom: 8px;
 }
 
+/* ---------------------- Options ---------------------- */
 .options-row {
   display: flex;
   flex-direction: row;
@@ -87,6 +96,7 @@ body, html {
   border-color: rgba(255,255,255,0.4);
 }
 
+/* ---------------------- Buttons ---------------------- */
 .start-btn, .submit-btn, .back-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -99,22 +109,40 @@ body, html {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  text-decoration: none; /* สำหรับ back-btn ที่เป็น <a> */
+  text-align: center;
 }
 
+/* ---------------------- Thank You Page ---------------------- */
 .thankyou-box {
   text-align: center;
+  max-width: 800px;
+  padding: 16px;
 }
 
 .thankyou-img {
   max-width: 90%;
-  max-height: 80vh;
+  max-height: 50vh;
   display: block;
   margin: 0 auto;
+  border-radius: 8px;
 }
 
+.thankyou-text {
+  max-width: 700px;
+  margin: 16px auto 0 auto;
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---------------------- Responsive ---------------------- */
 @media (max-width: 600px) {
   .option { width: 52px; height: 52px; }
   .option img { width: 46px; height: 46px; }
   .options-row { gap: 10px; }
   .survey-box { padding: 14px; }
+  .intro-box { padding: 14px; font-size: 13px; }
+  .thankyou-text { font-size: 14px; }
 }
