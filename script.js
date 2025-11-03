@@ -1,11 +1,17 @@
-// ======= ฟังก์ชันเปลี่ยนหน้า =======
+// ======================================================
+// script.js — เวอร์ชันสมบูรณ์ เชื่อม Firebase 2 โปรเจกต์
+// ======================================================
+
+// ✅ ฟังก์ชันเปลี่ยนหน้า
 function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const el = document.getElementById(pageId);
   if (el) el.classList.remove('hidden');
 }
 
-// ======= Firebase โปรเจกต์เก่า (แบบ compat) =======
+// ======================================================
+// ✅ Firebase โปรเจกต์เก่า (ใช้ compat SDK)
+// ======================================================
 import "https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js";
 import "https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js";
 import "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js";
@@ -24,9 +30,11 @@ const oldApp = firebase.initializeApp(oldConfig, "oldApp");
 const oldDB = oldApp.database();
 oldApp.auth().signInAnonymously().catch(console.error);
 
-// ======= Firebase โปรเจกต์ใหม่ (แบบโมดูลใหม่) =======
+// ======================================================
+// ✅ Firebase โปรเจกต์ใหม่ (ใช้ Modular SDK)
+// ======================================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 const newConfig = {
   apiKey: "AIzaSyAy88t3sZ_OEoQP0jRxVYKOLG1gucvRGsg",
@@ -42,8 +50,12 @@ const newConfig = {
 const newApp = initializeApp(newConfig, "newApp");
 const newDB = getDatabase(newApp);
 
-// ======= ส่วนของฟอร์ม =======
-document.addEventListener('DOMContentLoaded', () => {
+// ======================================================
+// ✅ เมื่อโหลดหน้าเสร็จ
+// ======================================================
+window.addEventListener('DOMContentLoaded', () => {
+
+  // ---- ตั้งค่าการกดเลือกคะแนนแต่ละข้อ ----
   const optionElements = document.querySelectorAll('.option');
   const glowMap = {
     "5": "rgba(0,200,83,0.85)",
@@ -59,14 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const row = option.closest('.options-row');
       if (!row) return;
 
+      // เอา glow ออกจากตัวอื่นในบรรทัดเดียวกัน
       row.querySelectorAll('.option').forEach(sib => {
         sib.classList.remove('selected');
         sib.style.removeProperty('--glow-color');
       });
 
+      // ใส่ glow ให้ตัวที่เลือก
       option.classList.add('selected');
       option.style.setProperty('--glow-color', glowMap[value] || 'rgba(0,200,83,0.8)');
 
+      // เก็บค่าที่เลือกไว้ใน input hidden
       const questionDiv = option.closest('.question');
       if (questionDiv) {
         const hidden = questionDiv.querySelector('.answer-input');
@@ -75,8 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ======= เมื่อส่งแบบฟอร์ม =======
-  document.getElementById('surveyForm').addEventListener('submit', async function(e) {
+  // ---- เมื่อส่งแบบสอบถาม ----
+  const form = document.getElementById('surveyForm');
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const inputs = document.querySelectorAll('.answer-input');
@@ -92,20 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
     answers.timestamp = Date.now();
 
     try {
-      // บันทึกไปโปรเจกต์เก่า
+      // ✅ ส่งไปโปรเจกต์เก่า
       await oldDB.ref("surveyResponses").push(answers);
 
-      // บันทึกไปโปรเจกต์ใหม่
+      // ✅ ส่งไปโปรเจกต์ใหม่
       const newRef = ref(newDB, "surveyResponses");
       await push(newRef, answers);
 
+      // ✅ แสดงหน้าขอบคุณ
       showPage('page-thankyou');
     } catch (error) {
-      alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-      console.error(error);
+      console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูล:", error);
+      alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองอีกครั้ง");
     }
   });
-});
 
-// เปิดหน้าแรก
-showPage('page-intro');
+  // ---- เปิดหน้าแรกเมื่อโหลดเสร็จ ----
+  showPage('page-intro');
+});
