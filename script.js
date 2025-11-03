@@ -1,11 +1,16 @@
+// ======= ฟังก์ชันเปลี่ยนหน้า =======
 function showPage(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const el = document.getElementById(pageId);
   if (el) el.classList.remove('hidden');
 }
 
-// Firebase
-const firebaseConfig = {
+// ======= Firebase โปรเจกต์เก่า (แบบ compat) =======
+import "https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js";
+import "https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js";
+import "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js";
+
+const oldConfig = {
   apiKey: "AIzaSyDf0D2GLLDHoAVX4zq-tLuVocSmsrFhs38",
   authDomain: "fera-2215e.firebaseapp.com",
   databaseURL: "https://fera-2215e-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -15,11 +20,29 @@ const firebaseConfig = {
   appId: "1:810225127285:web:fa87166d4e3e4770670d3c"
 };
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-const auth = firebase.auth();
-auth.signInAnonymously().catch(console.error);
+const oldApp = firebase.initializeApp(oldConfig, "oldApp");
+const oldDB = oldApp.database();
+oldApp.auth().signInAnonymously().catch(console.error);
 
+// ======= Firebase โปรเจกต์ใหม่ (แบบโมดูลใหม่) =======
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+const newConfig = {
+  apiKey: "AIzaSyAy88t3sZ_OEoQP0jRxVYKOLG1gucvRGsg",
+  authDomain: "fera-ergonomics.firebaseapp.com",
+  databaseURL: "https://fera-ergonomics-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "fera-ergonomics",
+  storageBucket: "fera-ergonomics.firebasestorage.app",
+  messagingSenderId: "111595993339",
+  appId: "1:111595993339:web:80119030f63a850447985e",
+  measurementId: "G-2T11CCPNY7"
+};
+
+const newApp = initializeApp(newConfig, "newApp");
+const newDB = getDatabase(newApp);
+
+// ======= ส่วนของฟอร์ม =======
 document.addEventListener('DOMContentLoaded', () => {
   const optionElements = document.querySelectorAll('.option');
   const glowMap = {
@@ -52,10 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.getElementById('surveyForm').addEventListener('submit', function(e) {
+  // ======= เมื่อส่งแบบฟอร์ม =======
+  document.getElementById('surveyForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    // ตรวจสอบว่าตอบครบทุกข้อ
     const inputs = document.querySelectorAll('.answer-input');
     for (const inp of inputs) {
       if (!inp.value) {
@@ -68,15 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
     inputs.forEach(inp => answers[inp.name] = inp.value);
     answers.timestamp = Date.now();
 
-    const refAnswers = db.ref("surveyResponses");
-    refAnswers.push(answers, error => {
-      if (error) {
-        alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
-        console.error(error);
-      } else {
-        showPage('page-thankyou');
-      }
-    });
+    try {
+      // บันทึกไปโปรเจกต์เก่า
+      await oldDB.ref("surveyResponses").push(answers);
+
+      // บันทึกไปโปรเจกต์ใหม่
+      const newRef = ref(newDB, "surveyResponses");
+      await push(newRef, answers);
+
+      showPage('page-thankyou');
+    } catch (error) {
+      alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+      console.error(error);
+    }
   });
 });
 
