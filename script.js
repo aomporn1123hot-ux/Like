@@ -3,14 +3,14 @@
 // ======================================================
 
 // ✅ ฟังก์ชันเปลี่ยนหน้า
-function showPage(pageId) {
+window.showPage = function(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const el = document.getElementById(pageId);
   if (el) el.classList.remove('hidden');
-}
+};
 
 // ======================================================
-// ✅ Firebase โปรเจกต์เก่า (ใช้ compat SDK)
+// ✅ Firebase โปรเจกต์เก่า (compat SDK)
 // ======================================================
 import "https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js";
 import "https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js";
@@ -31,7 +31,7 @@ const oldDB = oldApp.database();
 oldApp.auth().signInAnonymously().catch(console.error);
 
 // ======================================================
-// ✅ Firebase โปรเจกต์ใหม่ (ใช้ Modular SDK)
+// ✅ Firebase โปรเจกต์ใหม่ (Modular SDK)
 // ======================================================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
@@ -55,7 +55,14 @@ const newDB = getDatabase(newApp);
 // ======================================================
 window.addEventListener('DOMContentLoaded', () => {
 
-  // ---- ตั้งค่าการกดเลือกคะแนนแต่ละข้อ ----
+  // ---- เปิดหน้าแรก ----
+  showPage('page-intro');
+
+  // ---- ปุ่มเริ่ม ----
+  const startBtn = document.getElementById('startBtn');
+  startBtn.addEventListener('click', () => showPage('page-survey'));
+
+  // ---- ตั้งค่าการเลือกคะแนน ----
   const optionElements = document.querySelectorAll('.option');
   const glowMap = {
     "5": "rgba(0,200,83,0.85)",
@@ -71,17 +78,14 @@ window.addEventListener('DOMContentLoaded', () => {
       const row = option.closest('.options-row');
       if (!row) return;
 
-      // เอา glow ออกจากตัวอื่นในบรรทัดเดียวกัน
       row.querySelectorAll('.option').forEach(sib => {
         sib.classList.remove('selected');
         sib.style.removeProperty('--glow-color');
       });
 
-      // ใส่ glow ให้ตัวที่เลือก
       option.classList.add('selected');
       option.style.setProperty('--glow-color', glowMap[value] || 'rgba(0,200,83,0.8)');
 
-      // เก็บค่าที่เลือกไว้ใน input hidden
       const questionDiv = option.closest('.question');
       if (questionDiv) {
         const hidden = questionDiv.querySelector('.answer-input');
@@ -90,7 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- เมื่อส่งแบบสอบถาม ----
+  // ---- ส่งแบบสอบถาม ----
   const form = document.getElementById('surveyForm');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -108,21 +112,18 @@ window.addEventListener('DOMContentLoaded', () => {
     answers.timestamp = Date.now();
 
     try {
-      // ✅ ส่งไปโปรเจกต์เก่า
+      // ส่งไปโปรเจกต์เก่า
       await oldDB.ref("surveyResponses").push(answers);
 
-      // ✅ ส่งไปโปรเจกต์ใหม่
+      // ส่งไปโปรเจกต์ใหม่
       const newRef = ref(newDB, "surveyResponses");
       await push(newRef, answers);
 
-      // ✅ แสดงหน้าขอบคุณ
+      // แสดงหน้าขอบคุณ
       showPage('page-thankyou');
     } catch (error) {
-      console.error("เกิดข้อผิดพลาดในการบันทึกข้อมูล:", error);
+      console.error("เกิดข้อผิดพลาด:", error);
       alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองอีกครั้ง");
     }
   });
-
-  // ---- เปิดหน้าแรกเมื่อโหลดเสร็จ ----
-  showPage('page-intro');
 });
