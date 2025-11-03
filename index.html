@@ -5,19 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>แบบสอบถามความพึงพอใจ</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Firebase compat SDK -->
+  <!-- Firebase compat SDK สำหรับโปรเจกต์เก่า -->
   <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
 </head>
 <body>
+
   <!-- หน้าแรก -->
   <div id="page-intro" class="page">
     <div class="intro-box">
       <h2><u><b>คำชี้แจง</b></u></h2>
       <p>เลือกช่องที่ตรงกับความเป็นจริงพึงพอใจของท่าน</p>
       <p><img src="พึงพอใจ.png" alt="พึงพอใจ" style="max-width:100%; height:auto;"></p>
-      <button id="startBtn">เริ่ม</button>
+      <button class="start-btn" onclick="showPage('page-survey')">เริ่ม</button>
     </div>
   </div>
 
@@ -28,17 +29,29 @@
       <form id="surveyForm">
 
         <!-- คำถาม 1-7 -->
-        ${[1,2,3,4,5,6,7].map(i => `
-        <div class="question" data-q="${i}">
-          <p>${i}. คำถาม ${i}</p>
-          <div class="options-row">
-            ${[1,2,3,4,5].map(v => `
-              <div class="option" data-value="${v}" title="ระดับ ${v}">
-                <img src="level${v}.png" alt="ระดับ ${v}">
-              </div>`).join('')}
-          </div>
-          <input type="hidden" name="q${i}" class="answer-input">
-        </div>`).join('')}
+        <script>
+          const questions = [
+            "โปรแกรมใช้งานได้ง่าย ไม่ซับซ้อน",
+            "มีภาพหรือข้อมูลที่เข้าใจ",
+            "ความเหมาะสมของภาษา/ถ้อยคำ",
+            "ความรวดเร็วในการประมวลผล",
+            "ความสะดวกในการเข้าถึง (เช่น ใช้งานผ่านมือถือได้)",
+            "ความช่วยเหลือหรือคำแนะนำที่มีในระบบ",
+            "ภาพรวมของความพึงพอใจต่อโปรแกรม"
+          ];
+
+          for(let i=0;i<questions.length;i++){
+            document.write('<div class="question" data-q="'+(i+1)+'">');
+            document.write('<p>'+(i+1)+'. '+questions[i]+'</p>');
+            document.write('<div class="options-row">');
+            for(let j=1;j<=5;j++){
+              document.write('<div class="option" data-value="'+j+'" title="คะแนน '+j+'"><img src="'+(j==1?'น้อยที่สุด.png':j==2?'น้อย.png':j==3?'ปานกลาง.png':j==4?'มาก.png':'มากที่สุด.png')+'" alt="คะแนน '+j+'"></div>');
+            }
+            document.write('</div>');
+            document.write('<input type="hidden" name="q'+(i+1)+'" class="answer-input">');
+            document.write('</div>');
+          }
+        </script>
 
         <button type="submit" class="submit-btn">ส่ง</button>
       </form>
@@ -61,7 +74,6 @@
     </div>
   </div>
 
-  <!-- โหลด script.js -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
