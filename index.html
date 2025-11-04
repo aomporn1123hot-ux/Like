@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>แบบสอบถามความพึงพอใจ</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- Firebase compat SDK สำหรับโปรเจกต์เก่า -->
+
+  <!-- Firebase SDK (Compat สำหรับโปรเจกต์เก่า) -->
   <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-database-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/12.1.0/firebase-auth-compat.js"></script>
 </head>
 <body>
-
   <!-- หน้าแรก -->
   <div id="page-intro" class="page">
     <div class="intro-box">
@@ -29,29 +29,89 @@
       <form id="surveyForm">
 
         <!-- คำถาม 1-7 -->
-        <script>
-          const questions = [
-            "โปรแกรมใช้งานได้ง่าย ไม่ซับซ้อน",
-            "มีภาพหรือข้อมูลที่เข้าใจ",
-            "ความเหมาะสมของภาษา/ถ้อยคำ",
-            "ความรวดเร็วในการประมวลผล",
-            "ความสะดวกในการเข้าถึง (เช่น ใช้งานผ่านมือถือได้)",
-            "ความช่วยเหลือหรือคำแนะนำที่มีในระบบ",
-            "ภาพรวมของความพึงพอใจต่อโปรแกรม"
-          ];
+        <div class="question" data-q="1">
+          <p>1. โปรแกรมใช้งานได้ง่าย ไม่ซับซ้อน</p>
+          <div class="options-row">
+            <div class="option" data-value="1"><img src="น้อยที่สุด.png"></div>
+            <div class="option" data-value="2"><img src="น้อย.png"></div>
+            <div class="option" data-value="3"><img src="ปานกลาง.png"></div>
+            <div class="option" data-value="4"><img src="มาก.png"></div>
+            <div class="option" data-value="5"><img src="มากที่สุด.png"></div>
+          </div>
+          <input type="hidden" name="q1" class="answer-input">
+        </div>
 
-          for(let i=0;i<questions.length;i++){
-            document.write('<div class="question" data-q="'+(i+1)+'">');
-            document.write('<p>'+(i+1)+'. '+questions[i]+'</p>');
-            document.write('<div class="options-row">');
-            for(let j=1;j<=5;j++){
-              document.write('<div class="option" data-value="'+j+'" title="คะแนน '+j+'"><img src="'+(j==1?'น้อยที่สุด.png':j==2?'น้อย.png':j==3?'ปานกลาง.png':j==4?'มาก.png':'มากที่สุด.png')+'" alt="คะแนน '+j+'"></div>');
-            }
-            document.write('</div>');
-            document.write('<input type="hidden" name="q'+(i+1)+'" class="answer-input">');
-            document.write('</div>');
-          }
-        </script>
+        <div class="question" data-q="2">
+          <p>2. มีภาพหรือข้อมูลที่เข้าใจ</p>
+          <div class="options-row">
+            <div class="option" data-value="1"><img src="น้อยที่สุด.png"></div>
+            <div class="option" data-value="2"><img src="น้อย.png"></div>
+            <div class="option" data-value="3"><img src="ปานกลาง.png"></div>
+            <div class="option" data-value="4"><img src="มาก.png"></div>
+            <div class="option" data-value="5"><img src="มากที่สุด.png"></div>
+          </div>
+          <input type="hidden" name="q2" class="answer-input">
+        </div>
+
+        <div class="question" data-q="3">
+          <p>3. ความเหมาะสมของภาษา/ถ้อยคำ</p>
+          <div class="options-row">
+            <div class="option" data-value="1"><img src="น้อยที่สุด.png"></div>
+            <div class="option" data-value="2"><img src="น้อย.png"></div>
+            <div class="option" data-value="3"><img src="ปานกลาง.png"></div>
+            <div class="option" data-value="4"><img src="มาก.png"></div>
+            <div class="option" data-value="5"><img src="มากที่สุด.png"></div>
+          </div>
+          <input type="hidden" name="q3" class="answer-input">
+        </div>
+
+        <div class="question" data-q="4">
+          <p>4. ความรวดเร็วในการประมวลผล</p>
+          <div class="options-row">
+            <div class="option" data-value="1"><img src="น้อยที่สุด.png"></div>
+            <div class="option" data-value="2"><img src="น้อย.png"></div>
+            <div class="option" data-value="3"><img src="ปานกลาง.png"></div>
+            <div class="option" data-value="4"><img src="มาก.png"></div>
+            <div class="option" data-value="5"><img src="มากที่สุด.png"></div>
+          </div>
+          <input type="hidden" name="q4" class="answer-input">
+        </div>
+
+        <div class="question" data-q="5">
+          <p>5. ความสะดวกในการเข้าถึง (เช่น ใช้งานผ่านมือถือได้)</p>
+          <div class="options-row">
+            <div class="option" data-value="1"><img src="น้อยที่สุด.png"></div>
+            <div class="option" data-value="2"><img src="น้อย.png"></div>
+            <div class="option" data-value="3"><img src="ปานกลาง.png"></div>
+            <div class="option" data-value="4"><img src="มาก.png"></div>
+            <div class="option" data-value="5"><img src="มากที่สุด.png"></div>
+          </div>
+          <input type="hidden" name="q5" class="answer-input">
+        </div>
+
+        <div class="question" data-q="6">
+          <p>6. ความช่วยเหลือหรือคำแนะนำที่มีในระบบ</p>
+          <div class="options-row">
+            <div class="option" data-value="1"><img src="น้อยที่สุด.png"></div>
+            <div class="option" data-value="2"><img src="น้อย.png"></div>
+            <div class="option" data-value="3"><img src="ปานกลาง.png"></div>
+            <div class="option" data-value="4"><img src="มาก.png"></div>
+            <div class="option" data-value="5"><img src="มากที่สุด.png"></div>
+          </div>
+          <input type="hidden" name="q6" class="answer-input">
+        </div>
+
+        <div class="question" data-q="7">
+          <p>7. ภาพรวมของความพึงพอใจต่อโปรแกรม</p>
+          <div class="options-row">
+            <div class="option" data-value="1"><img src="น้อยที่สุด.png"></div>
+            <div class="option" data-value="2"><img src="น้อย.png"></div>
+            <div class="option" data-value="3"><img src="ปานกลาง.png"></div>
+            <div class="option" data-value="4"><img src="มาก.png"></div>
+            <div class="option" data-value="5"><img src="มากที่สุด.png"></div>
+          </div>
+          <input type="hidden" name="q7" class="answer-input">
+        </div>
 
         <button type="submit" class="submit-btn">ส่ง</button>
       </form>
@@ -62,18 +122,18 @@
   <div id="page-thankyou" class="page hidden">
     <div class="thankyou-box">
       <img src="ขอบคุณ.png" alt="ขอบคุณ" class="thankyou-img">
-      <div class="thankyou-text" style="margin-top:16px; font-size:16px; line-height:1.5; text-align:center; color:#000;">
+      <div class="thankyou-text">
         ข้อมูลการประเมินท่าทางในการทำงานครั้งนี้<br>
         ขอให้เป็นเหมือน คู่มือเล็กๆ 📘<br>
         ที่ช่วยให้คุณทำงานได้สบายขึ้น<br><br>
         💆‍♂️ ลดอาการปวดเมื่อย<br>
-        เสริมพลังการทำงาน ⚡️<br>
-        🛡️ ดูแลสุขภาพตัวเองไปพร้อมกับความปลอดภัย ✨
+        ⚡️ เสริมพลังการทำงาน<br>
+        🛡️ ดูแลสุขภาพตัวเองไปพร้อมกับความปลอดภัย
       </div>
       <a href="https://linkbio.co/7090201fGSN9z" target="_blank" class="back-btn">กลับไปหน้าหลัก</a>
     </div>
   </div>
 
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
