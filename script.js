@@ -1,18 +1,11 @@
-// ======================================================
-// script.js — แบบสอบถาม เชื่อม Firebase 2 โปรเจกต์
-// ======================================================
-
-// ฟังก์ชันเปลี่ยนหน้า
-function showPage(pageId){
-  document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const el = document.getElementById(pageId);
-  if(el) el.classList.remove('hidden');
+  if (el) el.classList.remove('hidden');
 }
 
-// ---------------------------
-// Firebase เก่า (compat SDK)
-// ---------------------------
-const oldConfig = {
+// ------------------ 🔥 Firebase โปรเจกต์เก่า ------------------
+const firebaseConfigOld = {
   apiKey: "AIzaSyDf0D2GLLDHoAVX4zq-tLuVocSmsrFhs38",
   authDomain: "fera-2215e.firebaseapp.com",
   databaseURL: "https://fera-2215e-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -22,17 +15,13 @@ const oldConfig = {
   appId: "1:810225127285:web:fa87166d4e3e4770670d3c"
 };
 
-const oldApp = firebase.initializeApp(oldConfig, "oldApp");
-const oldDB = oldApp.database();
-oldApp.auth().signInAnonymously().catch(console.error);
+const appOld = firebase.initializeApp(firebaseConfigOld, "old");
+const dbOld = appOld.database();
+const authOld = appOld.auth();
+authOld.signInAnonymously().catch(console.error);
 
-// ---------------------------
-// Firebase ใหม่ (modular SDK)
-// ---------------------------
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
-
-const newConfig = {
+// ------------------ 🔥 Firebase โปรเจกต์ใหม่ ------------------
+const firebaseConfigNew = {
   apiKey: "AIzaSyAy88t3sZ_OEoQP0jRxVYKOLG1gucvRGsg",
   authDomain: "fera-ergonomics.firebaseapp.com",
   databaseURL: "https://fera-ergonomics-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -43,76 +32,68 @@ const newConfig = {
   measurementId: "G-2T11CCPNY7"
 };
 
-const newApp = initializeApp(newConfig, "newApp");
-const newDB = getDatabase(newApp);
+const appNew = firebase.initializeApp(firebaseConfigNew, "new");
+const dbNew = appNew.database();
+const authNew = appNew.auth();
+authNew.signInAnonymously().catch(console.error);
 
-// ======================================================
-// เมื่อโหลดหน้า
-// ======================================================
-window.addEventListener('DOMContentLoaded',()=>{
-
-  // ---- เลือกคะแนน ----
+// ------------------ 🧩 การทำงานของฟอร์ม ------------------
+document.addEventListener('DOMContentLoaded', () => {
   const optionElements = document.querySelectorAll('.option');
   const glowMap = {
-    "5":"rgba(0,200,83,0.85)",
-    "4":"rgba(102,187,106,0.9)",
-    "3":"rgba(255,167,38,0.95)",
-    "2":"rgba(255,235,59,0.95)",
-    "1":"rgba(239,83,80,0.95)"
+    "5": "rgba(0,200,83,0.85)",
+    "4": "rgba(102,187,106,0.9)",
+    "3": "rgba(255,167,38,0.95)",
+    "2": "rgba(255,235,59,0.95)",
+    "1": "rgba(239,83,80,0.95)"
   };
 
-  optionElements.forEach(option=>{
-    option.addEventListener('click',()=>{
+  optionElements.forEach(option => {
+    option.addEventListener('click', () => {
       const value = option.dataset.value;
       const row = option.closest('.options-row');
-      if(!row) return;
+      if (!row) return;
 
-      row.querySelectorAll('.option').forEach(sib=>{
+      row.querySelectorAll('.option').forEach(sib => {
         sib.classList.remove('selected');
         sib.style.removeProperty('--glow-color');
       });
 
       option.classList.add('selected');
-      option.style.setProperty('--glow-color',glowMap[value]||'rgba(0,200,83,0.8)');
+      option.style.setProperty('--glow-color', glowMap[value]);
 
       const questionDiv = option.closest('.question');
-      if(questionDiv){
-        const hidden = questionDiv.querySelector('.answer-input');
-        if(hidden) hidden.value = value;
-      }
+      const hidden = questionDiv.querySelector('.answer-input');
+      hidden.value = value;
     });
   });
 
-  // ---- ส่งข้อมูล ----
-  const form = document.getElementById('surveyForm');
-  form.addEventListener('submit', async (e)=>{
+  document.getElementById('surveyForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const inputs = document.querySelectorAll('.answer-input');
-    for(const inp of inputs){
-      if(!inp.value){
+    for (const inp of inputs) {
+      if (!inp.value) {
         alert('กรุณาตอบแบบสอบถามทุกข้อก่อนส่ง');
         return;
       }
     }
 
     const answers = {};
-    inputs.forEach(inp=>answers[inp.name]=inp.value);
+    inputs.forEach(inp => answers[inp.name] = inp.value);
     answers.timestamp = Date.now();
 
-    try{
-      // ส่งโปรเจกต์เก่า
-      await oldDB.ref("surveyResponses").push(answers);
-      // ส่งโปรเจกต์ใหม่
-      await push(ref(newDB,"surveyResponses"),answers);
+    const saveOld = dbOld.ref("surveyResponses").push(answers);
+    const saveNew = dbNew.ref("surveyResponses").push(answers);
 
-      showPage('page-thankyou');
-    }catch(err){
-      console.error(err);
-      alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่");
-    }
+    Promise.allSettled([saveOld, saveNew])
+      .then(() => showPage('page-thankyou'))
+      .catch(err => {
+        console.error("บันทึกข้อมูลล้มเหลว:", err);
+        alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+      });
   });
-
-  // เปิดหน้าแรก
-  showPage('page-intro');
 });
+
+// เปิดหน้าแรก
+showPage('page-intro');
